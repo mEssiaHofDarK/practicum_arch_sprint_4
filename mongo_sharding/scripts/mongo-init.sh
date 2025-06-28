@@ -4,13 +4,13 @@
 # Инициализируем бд
 ###
 
-docker compose exec -T configSrv mongosh --port 27017 <<EOF
+docker compose exec -T configSrv mongosh --port 27035 <<EOF
 rs.initiate(
   {
     _id : "config_server",
        configsvr: true,
     members: [
-      { _id : 0, host : "configSrv:27017" }
+      { _id : 0, host : "configSrv:27035" }
     ]
   }
 );
@@ -45,7 +45,7 @@ exit();
 
 EOF
 
-docker compose exec -T mongo_router mongosh --port 27020 <<EOF
+docker compose exec -T mongo_router mongosh --port 27017 <<EOF
 
 sh.addShard( "shard1/shard1:27018");
 sh.addShard( "shard2/shard2:27019");
