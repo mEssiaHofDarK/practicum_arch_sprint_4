@@ -15,6 +15,9 @@
         <mxCell id="zA23MoTUsTF4_91t8viU-2" value="MongoDB shard 1-1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="670" y="490" width="60" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="UAHSILnUISeRK_P2W3PP-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="zA23MoTUsTF4_91t8viU-3" target="UAHSILnUISeRK_P2W3PP-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="zA23MoTUsTF4_91t8viU-3" value="pymongo-api" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="620" y="150" width="120" height="60" as="geometry" />
         </mxCell>
@@ -60,6 +63,9 @@
               <mxPoint x="610" y="450" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="UAHSILnUISeRK_P2W3PP-1" value="Redis" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="150" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="UAHSILnUISeRK_P2W3PP-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.855;exitY=1;exitDx=0;exitDy=-4.35;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="UAHSILnUISeRK_P2W3PP-35" target="0yIjB8DmivET-IdJgyGP-5">
           <mxGeometry relative="1" as="geometry">
