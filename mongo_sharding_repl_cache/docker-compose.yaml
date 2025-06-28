@@ -198,6 +198,8 @@ services:
       - redis
     ports:
       - 8080:8080
+    networks:
+      - mongo_net
     environment:
       MONGODB_URL: "mongodb://mongos"
       MONGODB_DATABASE_NAME: "somedb"

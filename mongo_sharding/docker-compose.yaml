@@ -103,6 +103,8 @@ services:
       - mongo_router
     ports:
       - 8080:8080
+    networks:
+      - mongo_net
     environment:
       MONGODB_URL: "mongodb://mongo_router"
       MONGODB_DATABASE_NAME: "somedb"
