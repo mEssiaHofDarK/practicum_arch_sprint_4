@@ -1,0 +1,70 @@
+#!/bin/bash
+
+###
+# Инициализируем бд
+###
+echo;
+echo \>\>\>init config_server;
+docker compose exec -T configSrv mongosh --port 27035 <<EOF
+rs.initiate(
+  {
+    _id : "config_server",
+       configsvr: true,
+    members: [
+      { _id : 0, host : "configSrv:27035" }
+    ]
+  }
+);
+exit();
+EOF
+
+echo;
+echo \>\>\>init shard1-1;
+docker compose exec -T shard1-1 mongosh --port 27018 <<EOF
+rs.initiate(
+    {
+      _id : "rs0",
+      members: [
+        { _id : 0, host : "shard1-1:27018" },
+        { _id : 1, host : "shard1-2:27019" },
+        { _id : 2, host : "shard1-3:27020" }
+      ]
+    }
+);
+exit();
+EOF
+
+echo;
+echo \>\>\>init shard2-1;
+docker compose exec -T shard2-1 mongosh --port 27021 <<EOF
+rs.initiate(
+    {
+      _id : "rs1",
+      members: [
+        { _id : 0, host : "shard2-1:27021" },
+        { _id : 1, host : "shard2-2:27022" },
+        { _id : 2, host : "shard2-3:27023" }
+      ]
+    }
+  );
+exit();
+EOF
+
+echo;
+echo \>\>\>init mongos;
+docker compose exec -T mongos mongosh --port 27017 <<EOF
+
+sh.addShard( "rs0/shard1-1:27018");
+sh.addShard( "rs1/shard2-1:27021");
+
+sh.enableSharding("somedb");
+sh.shardCollection("somedb.helloDoc", { "name" : "hashed" } );
+
+use somedb;
+
+for(var i = 0; i < 1000; i++) db.helloDoc.insert({age:i, name:"ly"+i});
+
+db.helloDoc.countDocuments();
+exit();
+EOF
+
